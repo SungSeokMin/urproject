@@ -30,7 +30,7 @@ function HeaderContainer() {
       <header>
         <div className="logo-container">
           <Link to="/">
-            <img src="logo.png" alt="로고" />
+            <img src="/logo.png" alt="로고" />
           </Link>
         </div>
         <div className="signIn-signUp">

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export type Post = {
+export type PostType = {
   id: number;
   nickname: string;
   thumbnail: string;
@@ -9,13 +9,15 @@ export type Post = {
 };
 
 export async function getUserPosts() {
-  const response = await axios.get<Post[]>('http://localhost:5000/board');
+  const response = await axios.get<PostType[]>('http://localhost:5000/board');
 
   return response.data;
 }
 
 export async function getUserPost(id: number) {
-  const response = await axios.get<Post>(`http://localhost:5000/board/${id}`);
+  const response = await axios.get<PostType>(
+    `http://localhost:5000/board/${id}`
+  );
 
   return response.data;
 }

@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import Board from './pages/Board';
+import PostListPage from './pages/PostListPage';
 import Main from './pages/Main';
 import Header from './pages/Header';
+import PostPage from './pages/PostPage';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <Header />
       <Switch>
         <Route path="/" component={Main} exact />
-        <Route path="/board" component={Board} />
+        <Route path="/post" component={PostListPage} exact />
+        <Route path="/post/:id" component={PostPage} />
       </Switch>
     </div>
   );

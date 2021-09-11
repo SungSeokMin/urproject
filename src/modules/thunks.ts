@@ -27,7 +27,6 @@ export const getPostAsync =
     try {
       // axios 요청
       const post = await getUserPost(id);
-
       dispatch(actions.getPostSuccess(post));
     } catch (error) {
       dispatch(actions.getPostError(error));

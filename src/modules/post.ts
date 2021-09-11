@@ -1,4 +1,4 @@
-import { Post } from '../api/posts';
+import { PostType } from '../api/posts';
 
 // 액션 타입
 const GET_POSTS = 'post/GET_POSTS' as const;
@@ -11,7 +11,7 @@ const GET_POST_ERROR = 'post/GET_POST_ERROR' as const;
 
 // 액션 생성 함수
 export const getPosts = () => ({ type: GET_POSTS });
-export const getPostsSuccess = (post: Post[]) => ({
+export const getPostsSuccess = (post: PostType[]) => ({
   type: GET_POSTS_SUCCESS,
   payload: post,
 });
@@ -21,7 +21,7 @@ export const getPostsError = (error: any) => ({
 });
 
 export const getPost = () => ({ type: GET_POST });
-export const getPostSuccess = (post: Post) => ({
+export const getPostSuccess = (post: PostType) => ({
   type: GET_POST_SUCCESS,
   payload: post,
 });
@@ -34,12 +34,12 @@ export const getPostError = (error: any) => ({
 export type BoardState = {
   posts: {
     loading: boolean;
-    data: Post[] | null;
+    data: PostType[] | null;
     error: Error | null;
   };
   post: {
     loading: boolean;
-    data: Post | null;
+    data: PostType | null;
     error: Error | null;
   };
 };
@@ -92,6 +92,33 @@ function post(
       return {
         ...state,
         posts: {
+          loading: false,
+          data: null,
+          error: action.payload,
+        },
+      };
+    case GET_POST:
+      return {
+        ...state,
+        post: {
+          loading: true,
+          data: null,
+          error: null,
+        },
+      };
+    case GET_POST_SUCCESS:
+      return {
+        ...state,
+        post: {
+          loading: false,
+          data: action.payload,
+          error: null,
+        },
+      };
+    case GET_POST_ERROR:
+      return {
+        ...state,
+        post: {
           loading: false,
           data: null,
           error: action.payload,

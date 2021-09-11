@@ -30,13 +30,15 @@ function HeaderContainer() {
       <header>
         <div className="logo-container">
           <Link to="/">
-            <img src="logo.png" alt="로고" />
+            <img src="/logo.png" alt="로고" />
           </Link>
         </div>
         <div className="signIn-signUp">
           <button className="signIn" onClick={showLoginModal}>
             {isLogin ? '로그아웃' : '로그인'}
           </button>
+          {/* isLogin && <Link to='/post/>게시판</Link */}
+          <Link to="/post">프로젝트</Link>
         </div>
       </header>
       {signIn && (

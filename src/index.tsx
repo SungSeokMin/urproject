@@ -7,8 +7,12 @@ import { createStore, applyMiddleware } from 'redux';
 import Thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import rootReducer from './modules';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(rootReducer, applyMiddleware(Thunk));
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(Thunk))
+);
 
 ReactDOM.render(
   <BrowserRouter>

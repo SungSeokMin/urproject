@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router';
 import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
 import { RootState } from '../modules/index';
 import { userLoginAsync } from '../modules/thunk/userThunks';
@@ -8,7 +9,9 @@ import { logout } from '../modules/user';
 import LoginModal from '../pages/modal/LoginModal';
 import SignUpModal from '../pages/modal/SignUpModal';
 
-function HeaderContainer() {
+type HeaderContainerProps = RouteComponentProps;
+
+function HeaderContainer({ history }: HeaderContainerProps) {
   const { isLogin } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
@@ -37,6 +40,7 @@ function HeaderContainer() {
   const handleLogout = () => {
     dispatch(logout());
     notShow();
+    history.push('/');
   };
 
   return (
@@ -80,4 +84,4 @@ function HeaderContainer() {
   );
 }
 
-export default HeaderContainer;
+export default withRouter(HeaderContainer);

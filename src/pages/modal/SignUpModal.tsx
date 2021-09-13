@@ -23,20 +23,20 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    const reg_email =
+    const REG_EMAIL =
       /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
-    const reg_password =
+    const REG_PASSWORD =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/;
 
     if (name === 'email') {
-      if (reg_email.test(value)) setEmailCheck(true);
+      if (REG_EMAIL.test(value)) setEmailCheck(true);
       else setEmailCheck(false);
     } else if (name === 'nickname') {
       if (value.length > 2 && value.length < 7) setNicknameCheck(true);
       else setNicknameCheck(false);
     } else if (name === 'password') {
-      if (reg_password.test(value)) setPasswordCheck(true);
+      if (REG_PASSWORD.test(value)) setPasswordCheck(true);
       else setPasswordCheck(false);
     }
 

@@ -1,0 +1,31 @@
+.notFoundContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(230, 230, 230);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.notFoundContainer > img {
+  width: 40%;
+  height: 40%;
+}
+
+.notFoundContainer > p {
+  font-size: 30px;
+}
+
+.notFoundContainer > .back {
+  padding: 10px 14px;
+  font-size: 30px;
+  background: #6c63ff;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}

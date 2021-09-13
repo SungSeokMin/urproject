@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PostList from '../components/post/PostList';
 import { RootState } from '../modules';
-import { getPostsAsync } from '../modules/thunks';
+import { getPostsAsync } from '../modules/thunk/postThunks';
 
 function PostListContainer() {
   const posts = useSelector((state: RootState) => state.post.posts);

@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { BASE_URL } from '../util';
+
+const resourceURL = BASE_URL + '/board';
 
 export type PostType = {
   id: number;
@@ -9,15 +12,13 @@ export type PostType = {
 };
 
 export async function getUserPosts() {
-  const response = await axios.get<PostType[]>('http://localhost:5000/board');
+  const response = await axios.get<PostType[]>(resourceURL);
 
   return response.data;
 }
 
 export async function getUserPost(id: number) {
-  const response = await axios.get<PostType>(
-    `http://localhost:5000/board/${id}`
-  );
+  const response = await axios.get<PostType>(`${resourceURL}/${id}`);
 
   return response.data;
 }

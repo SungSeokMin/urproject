@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { BASE_URL } from '../util';
+
+const resourceURL = BASE_URL + '/user';
 
 export type LoginType = {
   message: string;
@@ -7,11 +10,8 @@ export type LoginType = {
 
 export async function userLogin(email: string, password: string) {
   const response = await axios.post<LoginType>(
-    'http://localhost:5000/user/login',
-    {
-      email,
-      password,
-    },
+    `${resourceURL}/login`,
+    { email, password },
     { withCredentials: true }
   );
 

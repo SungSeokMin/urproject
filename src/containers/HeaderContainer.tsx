@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
 import { RootState } from '../modules/index';
-import { userLoginAsync } from '../modules/thunks';
+import { userLoginAsync } from '../modules/thunk/userThunks';
 import { logout } from '../modules/user';
 import LoginModal from '../pages/modal/LoginModal';
 import SignUpModal from '../pages/modal/SignUpModal';
@@ -57,8 +58,12 @@ function HeaderContainer() {
             </button>
           )}
 
-          {/* isLogin && <Link to='/post/>게시판</Link */}
-          <Link to="/post">프로젝트</Link>
+          {isLogin && (
+            <Link to="/post/">
+              <AiOutlineFundProjectionScreen />
+              프로젝트
+            </Link>
+          )}
         </div>
       </header>
       {!isLogin && signIn && (

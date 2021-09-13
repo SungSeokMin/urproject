@@ -30,6 +30,7 @@ function LoginModal({
   const handleLogin = () => {
     requestLogin(email, password);
   };
+
   return (
     <div className={styles.modalContainer}>
       <div className={styles.loginBox}>

@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 
-import styles from './Modal.module.css';
+import styles from '../../css/Modal.module.css';
 import { MdClose } from 'react-icons/md';
 
 type LoginModalProps = {

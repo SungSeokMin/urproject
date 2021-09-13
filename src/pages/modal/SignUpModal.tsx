@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import styles from './Modal.module.css';
+import styles from '../../css/Modal.module.css';
 import { MdClose, MdCheckCircle } from 'react-icons/md';
 
 type SignUpModalProps = {
@@ -44,7 +44,6 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
   };
 
   const handleSignup = () => {
-    // requestSignup(email, nickname, password);
     if (emailCheck === false) {
       alert('이메일 형식을 확인해주세요.');
       return;
@@ -55,6 +54,8 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
       alert('비밀번호 형식을 확인해주세요.');
       return;
     }
+
+    // requestSignup(email, nickname, password);
   };
 
   return (

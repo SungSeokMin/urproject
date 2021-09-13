@@ -61,10 +61,14 @@
   padding: 0 110px;
 }
 
+.modalContainer > .loginBox > .inputContainer > .infoContainer > b {
+  display: flex;
+}
+
 .modalContainer > .loginBox > .inputContainer > .infoContainer > input {
   border: 1px solid rgb(180, 180, 180);
   border-radius: 4px;
-  height: 22px;
+  height: 27px;
 }
 
 .modalContainer > .loginBox > .inputContainer > .infoContainer > * {
@@ -107,4 +111,14 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.success {
+  color: #6c63ff;
+  margin-left: 3px;
+}
+
+.fail {
+  color: #e05d5d;
+  margin-left: 3px;
 }

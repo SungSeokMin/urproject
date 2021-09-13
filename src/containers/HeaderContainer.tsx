@@ -19,13 +19,13 @@ function HeaderContainer({ history }: HeaderContainerProps) {
   const [signUp, setSignUp] = useState(false);
 
   const showLoginModal = () => {
-    setSignIn(!signIn);
+    setSignIn(true);
     setSignUp(false);
   };
 
   const showSignUpModal = () => {
     setSignIn(false);
-    setSignUp(!signUp);
+    setSignUp(true);
   };
 
   const notShow = () => {

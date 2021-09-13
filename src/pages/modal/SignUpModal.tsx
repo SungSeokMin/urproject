@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import styles from '../../css/Modal.module.css';
 import { MdClose, MdCheckCircle } from 'react-icons/md';
+import { checkEmail, checkNickname, userSignUp } from '../../api/users';
 
 type SignUpModalProps = {
   showLoginModal: () => void;
@@ -30,32 +31,37 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/;
 
     if (name === 'email') {
-      if (REG_EMAIL.test(value)) setEmailCheck(true);
-      else setEmailCheck(false);
+      REG_EMAIL.test(value) ? setEmailCheck(true) : setEmailCheck(false);
     } else if (name === 'nickname') {
-      if (value.length > 2 && value.length < 7) setNicknameCheck(true);
-      else setNicknameCheck(false);
+      value.length > 2 && value.length < 7
+        ? setNicknameCheck(true)
+        : setNicknameCheck(false);
     } else if (name === 'password') {
-      if (REG_PASSWORD.test(value)) setPasswordCheck(true);
-      else setPasswordCheck(false);
+      REG_PASSWORD.test(value)
+        ? setPasswordCheck(true)
+        : setPasswordCheck(false);
     }
 
     setInputs({ ...inputs, [name]: value });
   };
 
-  const handleSignup = () => {
-    if (emailCheck === false) {
-      alert('이메일 형식을 확인해주세요.');
-      return;
-    } else if (nicknameCheck === false) {
-      alert('닉네임 형식을 확인해주세요.');
-      return;
-    } else if (passwordCheck === false) {
-      alert('비밀번호 형식을 확인해주세요.');
-      return;
-    }
+  const handleSignup = async () => {
+    if (emailCheck && nicknameCheck && passwordCheck) {
+      // 유효성 검사 성공
 
-    // requestSignup(email, nickname, password);
+      const emailValidator = await checkEmail(email);
+      const nicknameValidator = await checkNickname(nickname);
+
+      if (!emailValidator && !nicknameValidator) {
+        // 중복된 email, nickname 없음
+        // 회원가입 요청
+        userSignUp(email, nickname, password);
+
+        showLoginModal();
+      } else {
+        alert('중복된 이메일 또는 닉네임 입니다.');
+      }
+    }
   };
 
   return (

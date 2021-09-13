@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
-import { getPostAsync } from '../modules/thunks';
+import { getPostAsync } from '../modules/thunk/postThunks';
 import Post from '../components/post/Post';
 
 type PostContainerProps = {

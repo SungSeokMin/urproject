@@ -4,15 +4,22 @@ import styles from './Modal.module.css';
 import { MdClose } from 'react-icons/md';
 
 type LoginModalProps = {
+  requestLogin: (email: string, password: string) => void;
   showSignUpModal: () => void;
   notShow: () => void;
 };
 
-function LoginModal({ showSignUpModal, notShow }: LoginModalProps) {
+function LoginModal({
+  requestLogin,
+  showSignUpModal,
+  notShow,
+}: LoginModalProps) {
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
   });
+
+  const { email, password } = inputs;
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -20,6 +27,9 @@ function LoginModal({ showSignUpModal, notShow }: LoginModalProps) {
     setInputs({ ...inputs, [name]: value });
   };
 
+  const handleLogin = () => {
+    requestLogin(email, password);
+  };
   return (
     <div className={styles.modalContainer}>
       <div className={styles.loginBox}>
@@ -44,7 +54,9 @@ function LoginModal({ showSignUpModal, notShow }: LoginModalProps) {
               className={styles.password}
               onChange={onChange}
             />
-            <button className={styles.signinBtn}>로그인</button>
+            <button className={styles.signinBtn} onClick={handleLogin}>
+              로그인
+            </button>
           </div>
           <div className={styles.moveSignupContainer}>
             <span>아직 회원이 아니신가요?</span>

@@ -1,34 +1,52 @@
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '.';
-import * as actions from './post';
+import * as userActions from './user';
+import * as postActions from './post';
 import { getUserPosts, getUserPost } from '../api/posts';
+import { userLogin } from '../api/users';
 
 // redux-thunk 함수
-export const getPostsAsync =
-  (): ThunkAction<void, RootState, null, actions.BoardAction> =>
+
+export const userLoginAsync =
+  (
+    email: string,
+    password: string
+  ): ThunkAction<void, RootState, any, userActions.UserAction> =>
   async (dispatch) => {
-    dispatch(actions.getPosts());
+    try {
+      const { nickname } = await userLogin(email, password);
+
+      dispatch(userActions.loginSuccess(nickname));
+    } catch (error) {
+      alert('정보를 다시 확인해주세요.');
+    }
+  };
+
+export const getPostsAsync =
+  (): ThunkAction<void, RootState, null, postActions.BoardAction> =>
+  async (dispatch) => {
+    dispatch(postActions.getPosts());
 
     try {
       // axios 요청
       const posts = await getUserPosts();
 
-      dispatch(actions.getPostsSuccess(posts));
+      dispatch(postActions.getPostsSuccess(posts));
     } catch (error) {
-      dispatch(actions.getPostsError(error));
+      dispatch(postActions.getPostsError(error));
     }
   };
 
 export const getPostAsync =
-  (id: number): ThunkAction<void, RootState, null, actions.BoardAction> =>
+  (id: number): ThunkAction<void, RootState, null, postActions.BoardAction> =>
   async (dispatch) => {
-    dispatch(actions.getPost());
+    dispatch(postActions.getPost());
 
     try {
       // axios 요청
       const post = await getUserPost(id);
-      dispatch(actions.getPostSuccess(post));
+      dispatch(postActions.getPostSuccess(post));
     } catch (error) {
-      dispatch(actions.getPostError(error));
+      dispatch(postActions.getPostError(error));
     }
   };

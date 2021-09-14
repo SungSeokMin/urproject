@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 
 import styles from '../../css/Modal.module.css';
 import { MdClose } from 'react-icons/md';
@@ -27,7 +27,8 @@ function LoginModal({
     setInputs({ ...inputs, [name]: value });
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     requestLogin(email, password);
   };
 
@@ -40,7 +41,7 @@ function LoginModal({
         <div className={styles.inputContainer}>
           <MdClose className={styles.icons} onClick={notShow} />
           <span>로그인</span>
-          <div className={styles.infoContainer}>
+          <form className={styles.infoContainer} onSubmit={handleLogin}>
             <b>이메일</b>
             <input
               type="text"
@@ -54,11 +55,12 @@ function LoginModal({
               name="password"
               className={styles.password}
               onChange={onChange}
+              autoComplete="off"
             />
-            <button className={styles.signinBtn} onClick={handleLogin}>
+            <button type="submit" className={styles.signinBtn}>
               로그인
             </button>
-          </div>
+          </form>
           <div className={styles.moveSignupContainer}>
             <span>아직 회원이 아니신가요?</span>
             <button className={styles.moveSignupPage} onClick={showSignUpModal}>

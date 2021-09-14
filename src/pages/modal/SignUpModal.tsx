@@ -103,7 +103,7 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
               name="nickname"
               className={styles.nickName}
               onChange={onChange}
-              placeholder="2~6자리"
+              placeholder="닉네임을 입력해주세요."
             />
             <b>
               비밀번호

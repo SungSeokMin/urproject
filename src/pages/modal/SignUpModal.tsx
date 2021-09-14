@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styles from '../../css/Modal.module.css';
 import { MdClose, MdCheckCircle } from 'react-icons/md';
 import { checkEmail, checkNickname, userSignUp } from '../../api/users';
@@ -45,13 +45,14 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
     setInputs({ ...inputs, [name]: value });
   };
 
-  const handleSignup = async () => {
+  const handleSignup = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     if (emailCheck && nicknameCheck && passwordCheck) {
       // 유효성 검사 성공
 
       const emailValidator = await checkEmail(email);
       const nicknameValidator = await checkNickname(nickname);
-
       if (!emailValidator && !nicknameValidator) {
         // 중복된 email, nickname 없음
         // 회원가입 요청
@@ -73,7 +74,7 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
         <div className={styles.inputContainer}>
           <MdClose className={styles.icons} onClick={notShow} />
           <span>회원가입</span>
-          <div className={styles.infoContainer}>
+          <form className={styles.infoContainer} onSubmit={handleSignup}>
             <b>
               이메일
               {email.length === 0 ? null : emailCheck ? (
@@ -117,12 +118,13 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
               name="password"
               className={styles.password}
               onChange={onChange}
+              autoComplete="off"
               placeholder="숫자, 영문, 특수문자 8~16자리"
             />
-            <button className={styles.signupBtn} onClick={handleSignup}>
+            <button type="submit" className={styles.signupBtn}>
               회원가입
             </button>
-          </div>
+          </form>
           <div className={styles.moveSignupContainer}>
             <span>이미 회원이신가요?</span>
             <button className={styles.moveSignupPage} onClick={showLoginModal}>

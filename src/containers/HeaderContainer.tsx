@@ -61,6 +61,7 @@ function HeaderContainer({ history }: HeaderContainerProps) {
               로그인
             </button>
           )}
+          {!isLogin && <button onClick={showSignUpModal}>회원가입</button>}
 
           {isLogin && (
             <Link to="/post/">

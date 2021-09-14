@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import styles from '../../css/Modal.module.css';
 import { MdClose, MdCheckCircle } from 'react-icons/md';
 import { checkEmail, checkNickname, userSignUp } from '../../api/users';
@@ -45,22 +45,25 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
     setInputs({ ...inputs, [name]: value });
   };
 
+  const nicknameRef = useRef<HTMLInputElement>(null);
+
   const handleSignup = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (emailCheck && nicknameCheck && passwordCheck) {
       // 유효성 검사 성공
-
       const emailValidator = await checkEmail(email);
       const nicknameValidator = await checkNickname(nickname);
       if (!emailValidator && !nicknameValidator) {
         // 중복된 email, nickname 없음
         // 회원가입 요청
         userSignUp(email, nickname, password);
-
+        alert('회원가입이 완료되었습니다.');
         showLoginModal();
       } else {
-        alert('중복된 이메일 또는 닉네임 입니다.');
+        alert('중복된 닉네임 입니다.');
+
+        if (nicknameRef.current !== null) nicknameRef.current.focus();
       }
     }
   };
@@ -103,6 +106,7 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
               name="nickname"
               className={styles.nickName}
               onChange={onChange}
+              ref={nicknameRef}
               placeholder="닉네임을 입력해주세요."
             />
             <b>

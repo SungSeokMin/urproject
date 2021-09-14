@@ -62,7 +62,7 @@ function LoginModal({
             </button>
           </form>
           <div className={styles.moveSignupContainer}>
-            <span>아직 회원이 아니신가요?</span>
+            <span>회원이 아니신가요?</span>
             <button className={styles.moveSignupPage} onClick={showSignUpModal}>
               회원가입
             </button>

@@ -62,7 +62,6 @@ function HeaderContainer({ history }: HeaderContainerProps) {
             </button>
           )}
           {!isLogin && <button onClick={showSignUpModal}>회원가입</button>}
-
           {isLogin && (
             <Link to="/post/">
               <AiOutlineFundProjectionScreen />

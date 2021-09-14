@@ -19,6 +19,8 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
   const [passwordCheck, setPasswordCheck] = useState(false);
   const [nicknameCheck, setNicknameCheck] = useState(false);
 
+  const nicknameRef = useRef<HTMLInputElement>(null);
+
   const { email, nickname, password } = inputs;
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -44,8 +46,6 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
 
     setInputs({ ...inputs, [name]: value });
   };
-
-  const nicknameRef = useRef<HTMLInputElement>(null);
 
   const handleSignup = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

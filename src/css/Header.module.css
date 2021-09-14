@@ -1,0 +1,46 @@
+.header {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoContainer {
+  width: 220px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.logoContainer img {
+  width: 100%;
+  height: 100%;
+}
+
+.projectLink {
+  text-decoration: none;
+  font-size: 20px;
+  color: #827ddd;
+}
+
+.signOutBtn,
+.loginBtn {
+  padding: 8px 10px;
+  background: none;
+  color: #6c63ff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.signUpBtn {
+  padding: 8px 10px;
+  background: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}

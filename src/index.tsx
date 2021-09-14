@@ -9,6 +9,8 @@ import { Provider } from 'react-redux';
 import rootReducer from './modules';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createBrowserHistory } from 'history';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 
 export const history = createBrowserHistory();
 
@@ -17,10 +19,14 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(Thunk.withExtraArgument({ history })))
 );
 
+export const persistor = persistStore(store);
+
 ReactDOM.render(
   <Router history={history}>
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </Router>,
   document.getElementById('root')

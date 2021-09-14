@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import PostListPage from './pages/PostListPage';
-import Main from './pages/Main';
+import Main from './pages/main/Main';
 import Header from './pages/Header';
 import PostPage from './pages/PostPage';
 import NotFound from './pages/NotFound';

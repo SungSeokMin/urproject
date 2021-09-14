@@ -10,13 +10,15 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <div className="app-container">
-      <Header />
-      <Switch>
-        <Route path="/" component={Main} exact />
-        <Route path="/post" component={PostListPage} exact />
-        <Route path="/post/:id" component={PostPage} />
-        <Route component={NotFound} />
-      </Switch>
+      <div className="inner-container">
+        <Header />
+        <Switch>
+          <Route path="/" component={Main} exact />
+          <Route path="/post" component={PostListPage} exact />
+          <Route path="/post/:id" component={PostPage} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
     </div>
   );
 }

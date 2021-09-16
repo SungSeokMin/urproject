@@ -67,8 +67,9 @@ function Write({ history }: WriteProps) {
     () => ({
       toolbar: {
         container: [
+          [{ header: [1, 2, false] }],
           ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-          [{ size: ['small', false, 'large', 'huge'] }, { color: [] }],
+          [{ color: [] }],
           [
             { list: 'ordered' },
             { list: 'bullet' },
@@ -76,7 +77,7 @@ function Write({ history }: WriteProps) {
             { indent: '+1' },
             { align: [] },
           ],
-          ['image', 'video'],
+          ['link', 'image'],
         ],
         handlers: {
           image: imageHandler,

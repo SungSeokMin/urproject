@@ -72,7 +72,7 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
     <div className={styles.modalContainer}>
       <div className={styles.loginBox}>
         <div className={styles.imgContainer}>
-          <img src="images/welcome.svg" alt="회원가입" />
+          <img src="/images/welcome.svg" alt="회원가입" />
         </div>
         <div className={styles.inputContainer}>
           <MdClose className={styles.icons} onClick={notShow} />

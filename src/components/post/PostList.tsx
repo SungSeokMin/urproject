@@ -6,15 +6,18 @@ import { FaHeartbeat } from 'react-icons/fa';
 
 type PostListProps = {
   posts: PostType[];
+  isLogin: boolean;
 };
 
-function PostList({ posts }: PostListProps) {
+function PostList({ isLogin, posts }: PostListProps) {
   return (
     <>
       <div className={styles.writeBtn}>
-        <Link to="/write" className={styles.createPost}>
-          글 작성
-        </Link>
+        {isLogin && (
+          <Link to="/write" className={styles.createPost}>
+            글 작성
+          </Link>
+        )}
       </div>
       <div className={styles.postListConatiner}>
         {posts.map((post) => (

@@ -1,8 +1,11 @@
-body {
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 300;
+  font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+}
+body {
+  font-weight: 500;
+  color: rgb(64, 65, 66);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

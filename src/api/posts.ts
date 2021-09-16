@@ -5,8 +5,9 @@ const resourceURL = BASE_URL + '/board';
 
 export type CreatePostType = {
   nickname: string;
-  thumbnail: string;
   title: string;
+  content: string;
+  thumbnail: string;
 };
 
 export type PostType = CreatePostType & {

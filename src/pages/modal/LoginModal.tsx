@@ -36,7 +36,7 @@ function LoginModal({
     <div className={styles.modalContainer}>
       <div className={styles.loginBox}>
         <div className={styles.imgContainer}>
-          <img src="images/welcome.svg" alt="로그인" />
+          <img src="/images/welcome.svg" alt="로그인" />
         </div>
         <div className={styles.inputContainer}>
           <MdClose className={styles.icons} onClick={notShow} />

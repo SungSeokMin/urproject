@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .logoContainer {
@@ -20,8 +21,9 @@
 }
 
 .menuContainer {
-  justify-self: center;
-  margin-right: 110px;
+  position: absolute;
+  top: 32%;
+  left: 47%;
 }
 
 .projectLink {
@@ -41,7 +43,6 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 20px;
-  margin-right: 20px;
 }
 
 .signUpBtn {
@@ -52,4 +53,5 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 20px;
+  margin-left: 20px;
 }

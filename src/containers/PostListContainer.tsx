@@ -6,6 +6,7 @@ import { getPostsAsync } from '../modules/thunk/postThunks';
 
 function PostListContainer() {
   const posts = useSelector((state: RootState) => state.post.posts);
+  const { isLogin } = useSelector((state: RootState) => state.user);
   const { data, loading, error } = posts;
 
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function PostListContainer() {
   if (error) return <p>오류 발생...</p>;
   if (!data) return null;
 
-  return <PostList posts={data} />;
+  return <PostList posts={data} isLogin={isLogin} />;
 }
 
 export default PostListContainer;

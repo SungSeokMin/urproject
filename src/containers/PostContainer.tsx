@@ -12,6 +12,8 @@ function PostContainer({ postId }: PostContainerProps) {
   const { data, loading, error } = useSelector(
     (state: RootState) => state.post.post
   );
+  const loginUserInfo = useSelector((state: RootState) => state.user);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,7 +24,7 @@ function PostContainer({ postId }: PostContainerProps) {
   if (error) return <div>에러 발생 ...</div>;
   if (!data) return null;
 
-  return <Post post={data} />;
+  return <Post post={data} loginUserInfo={loginUserInfo} />;
 }
 
 export default PostContainer;

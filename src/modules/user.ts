@@ -8,7 +8,7 @@ export const loginSuccess = (nickname: string) => ({
 
 export const logout = () => ({ type: LOGOUT });
 
-type UserState = {
+export type UserState = {
   nickname: string;
   isLogin: boolean;
 };

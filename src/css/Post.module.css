@@ -1,0 +1,87 @@
+.postContainer {
+  width: 960px;
+  height: 100%;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.postContainer > .titleAria {
+  width: 100%;
+  height: 100%;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.postContainer > .titleAria > span {
+  word-break: break-all;
+}
+
+.postContainer > .nicknameAndLike {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0 5px 0;
+}
+
+.postContainer > .nicknameAndLike > .nicknameAria {
+  font-weight: 400;
+  font-size: 16px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.postContainer > .nicknameAndLike > .likeAria {
+  display: flex;
+  align-items: center;
+  color: rgb(64, 65, 66);
+  font-size: 25px;
+}
+
+.postContainer > .nicknameAndLike > .likeAria > .likeIcon {
+  cursor: pointer;
+}
+
+.postContainer > .nicknameAndLike > .likeAria > .unLikeIcon {
+  color: #6c63ff;
+  cursor: pointer;
+}
+
+.postContainer > .nicknameAndLike > .likeAria > .likeNumber {
+  height: 100%;
+  margin-left: 8px;
+  font-size: 15px;
+}
+
+.postContainer > .underLine {
+  width: 100%;
+  height: 2px;
+  background-color: #6c63ff;
+}
+
+.postContainer > .modifyAndDeleteAria {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+
+.postContainer > .modifyAndDeleteAria > button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: rgb(86, 91, 95);
+}
+
+.postContainer > .modifyAndDeleteAria > button:hover {
+  color: #6c63ff;
+}
+
+.postContainer > .modifyAndDeleteAria > .deleteBtn {
+  margin-left: 15px;
+}
+
+.postContainer > .contentAria {
+  margin-top: 50px;
+  font-size: 20px;
+  font-weight: 300;
+}

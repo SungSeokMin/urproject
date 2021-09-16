@@ -1,0 +1,60 @@
+.postListConatiner {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-columns: minmax(316px, 316px);
+  gap: 40px;
+}
+
+.postListConatiner > a {
+  text-decoration: none;
+  color: black;
+}
+
+.postContainer {
+  height: 320px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 7%) 0px 4px 16px 0px;
+  transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;
+  z-index: 10;
+}
+
+.postContainer:hover {
+  transform: translateY(-8px);
+  box-shadow: rgb(0 0 0 / 8%) 0px 12px 20px 0px;
+}
+
+.imgAria {
+  height: 60%;
+}
+
+.imgAria > img {
+  width: 100%;
+  height: 100%;
+}
+
+.titleAria {
+  height: 30%;
+  box-sizing: border-box;
+  padding: 10px 10px;
+  font-size: 18px;
+}
+
+.nicknameAndLike {
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 10px 10px;
+  font-size: 14px;
+}
+
+.nicknameAndLike > .like {
+  display: flex;
+  align-items: center;
+}
+
+.nicknameAndLike > .like > .likeIcon {
+  margin-right: 5px;
+}

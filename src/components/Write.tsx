@@ -136,7 +136,10 @@ function Write({ history }: WriteProps) {
   return (
     <div className={styles.writeContainer}>
       <div className={styles.titleArea}>
-        <textarea placeholder="제목을 입력해주세요." onChange={titleChange} />
+        <textarea
+          placeholder="프로젝트 이름을 작성해주세요."
+          onChange={titleChange}
+        />
       </div>
 
       {loading && <WriteLoadingPage />}

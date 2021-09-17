@@ -2,21 +2,19 @@ import { AxiosError } from 'axios';
 import React, { ChangeEvent, useMemo, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { createPost, modifyPost } from '../api/posts';
+import { createPost, modifyPost, PostType } from '../api/posts';
 import { saveS3Image, saveS3Thumbnail } from '../api/write';
 import styles from '../css/Write.module.css';
-import { RootState } from '../modules';
 import WriteLoadingPage from '../pages/WriteLoadingPage';
 
 type WriteProps = RouteComponentProps & {
   nickname: string;
+  data: PostType | null;
 };
 
 function Write(props: WriteProps) {
-  const { history, match, nickname } = props;
-  let { data } = useSelector((state: RootState) => state.posts.post);
+  const { history, match, nickname, data } = props;
 
   const [loading, setLoading] = useState(false);
 

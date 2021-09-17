@@ -6,8 +6,9 @@ import { RouteComponentProps, withRouter } from 'react-router';
 
 function WriteContainer(props: RouteComponentProps) {
   const { nickname } = useSelector((state: RootState) => state.user);
+  let { data } = useSelector((state: RootState) => state.posts.post);
 
-  return <Write nickname={nickname} />;
+  return <Write nickname={nickname} data={data} />;
 }
 
 export default withRouter(WriteContainer);

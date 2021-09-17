@@ -20,9 +20,11 @@ function PostListContainer(props: RouteComponentProps) {
     dispatch(getPostsAsync());
   }, [dispatch]);
 
-  if (!data || error) return <NotFound {...props} />;
+  if (!data && loading) return <LoadingPage />;
 
-  if (loading) return <LoadingPage />;
+  if (error) return <NotFound {...props} />;
+
+  if (!data) return <div>작성된 게시글이 없습니다.</div>;
 
   return <PostList posts={data} isLogin={isLogin} />;
 }

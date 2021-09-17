@@ -4,13 +4,15 @@ import styles from '../../css/Post.module.css';
 import { GiHeartPlus, GiHeartMinus } from 'react-icons/gi';
 import { UserState } from '../../modules/user';
 import { Link } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
 
-type PostProps = {
+type PostProps = RouteComponentProps & {
   post: PostType;
   loginUserInfo: UserState;
+  requestRemovePost: (id: number) => void;
 };
 
-function Post({ post, loginUserInfo }: PostProps) {
+function Post({ post, loginUserInfo, requestRemovePost, history }: PostProps) {
   const { id, nickname, title, content, like } = post;
 
   const [bool, setBool] = useState(false);
@@ -21,6 +23,12 @@ function Post({ post, loginUserInfo }: PostProps) {
 
   const clickUnLikeIcon = () => {
     setBool(false);
+  };
+
+  const removePostHandler = () => {
+    requestRemovePost(id);
+
+    history.push('/post');
   };
 
   return (
@@ -57,7 +65,9 @@ function Post({ post, loginUserInfo }: PostProps) {
             <Link to={`modify/${id}`}>
               <button className={styles.modifyBtn}>수정</button>
             </Link>
-            <button className={styles.deleteBtn}>삭제</button>
+            <button className={styles.deleteBtn} onClick={removePostHandler}>
+              삭제
+            </button>
           </>
         )}
       </div>

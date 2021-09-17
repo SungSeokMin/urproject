@@ -6,7 +6,8 @@ import { userLogin } from '../../api/users';
 export const userLoginAsync =
   (
     email: string,
-    password: string
+    password: string,
+    callback: (message: string) => void
   ): ThunkAction<void, RootState, any, userActions.UserAction> =>
   async (dispatch) => {
     try {
@@ -14,6 +15,6 @@ export const userLoginAsync =
 
       dispatch(userActions.loginSuccess(nickname));
     } catch (error) {
-      alert('정보를 다시 확인해주세요.');
+      callback('정보를 다시 입력해주세요.');
     }
   };

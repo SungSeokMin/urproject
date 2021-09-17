@@ -41,3 +41,7 @@ export async function createPost(post: CreatePostType) {
 export async function modifyPost(post: ModifyPostType) {
   await axios.patch(`${resourceURL}/${post.id}`, post);
 }
+
+export async function removePost(id: number) {
+  await axios.delete(`${resourceURL}/${id}`);
+}

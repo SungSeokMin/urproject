@@ -25,9 +25,9 @@ function PostContainer(props: PostContainerProps) {
     dispatch(getPostAsync(postId));
   }, [postId, dispatch]);
 
-  if (!data || error) return <NotFound {...props} />;
-
   if (loading) return <LoadingPage />;
+
+  if (!data || error) return <NotFound {...props} />;
 
   return <Post post={data} loginUserInfo={loginUserInfo} />;
 }

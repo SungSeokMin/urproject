@@ -5,6 +5,7 @@ import { getPostAsync } from '../modules/thunk/postThunks';
 import Post from '../components/post/Post';
 import NotFound from '../pages/NotFound';
 import { RouteComponentProps, withRouter } from 'react-router';
+import LoadingPage from '../pages/LoadingPage';
 
 type PostContainerProps = RouteComponentProps & {
   postId: number;
@@ -24,8 +25,9 @@ function PostContainer(props: PostContainerProps) {
     dispatch(getPostAsync(postId));
   }, [postId, dispatch]);
 
-  if (loading) return <div>로딩중 ...</div>;
   if (!data || error) return <NotFound {...props} />;
+
+  if (loading) return <LoadingPage />;
 
   return <Post post={data} loginUserInfo={loginUserInfo} />;
 }

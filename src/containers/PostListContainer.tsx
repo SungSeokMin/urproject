@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import PostList from '../components/post/PostList';
 import { RootState } from '../modules';
-import { removePost } from '../modules/post';
+import { clearPost } from '../modules/posts';
 import { getPostsAsync } from '../modules/thunk/postThunks';
+import LoadingPage from '../pages/LoadingPage';
 import NotFound from '../pages/NotFound';
 
 function PostListContainer(props: RouteComponentProps) {
@@ -15,12 +16,13 @@ function PostListContainer(props: RouteComponentProps) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(clearPost());
     dispatch(getPostsAsync());
-    dispatch(removePost());
   }, [dispatch]);
 
-  if (loading) return <p>로딩 중...</p>;
   if (!data || error) return <NotFound {...props} />;
+
+  if (loading) return <LoadingPage />;
 
   return <PostList posts={data} isLogin={isLogin} />;
 }

@@ -6,6 +6,7 @@ import Post from '../components/post/Post';
 import NotFound from '../pages/NotFound';
 import { RouteComponentProps, withRouter } from 'react-router';
 import LoadingPage from '../pages/LoadingPage';
+import { removePost } from '../api/posts';
 
 type PostContainerProps = RouteComponentProps & {
   postId: number;
@@ -29,7 +30,18 @@ function PostContainer(props: PostContainerProps) {
 
   if (!data || error) return <NotFound {...props} />;
 
-  return <Post post={data} loginUserInfo={loginUserInfo} />;
+  const requestRemovePost = async (id: number) => {
+    await removePost(id);
+  };
+
+  return (
+    <Post
+      post={data}
+      loginUserInfo={loginUserInfo}
+      requestRemovePost={requestRemovePost}
+      {...props}
+    />
+  );
 }
 
 export default withRouter(PostContainer);

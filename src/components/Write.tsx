@@ -15,7 +15,7 @@ type WriteProps = RouteComponentProps & {
 
 function Write(props: WriteProps) {
   const { history, match, nickname, data } = props;
-
+  console.log('18', data);
   const [loading, setLoading] = useState(false);
 
   const [title, setTitle] = useState(data ? data.title : '');

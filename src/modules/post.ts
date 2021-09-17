@@ -8,6 +8,7 @@ const GET_POSTS_ERROR = 'post/GET_POSTS_ERROR' as const;
 const GET_POST = 'post/GET_POST' as const;
 const GET_POST_SUCCESS = 'post/GET_POST_SUCCESS' as const;
 const GET_POST_ERROR = 'post/GET_POST_ERROR' as const;
+const REMOVE_POST = 'post/REMOVE_POST' as const;
 
 // 액션 생성 함수
 export const getPosts = () => ({ type: GET_POSTS });
@@ -30,6 +31,8 @@ export const getPostError = (error: any) => ({
   payload: error,
 });
 
+export const removePost = () => ({ type: REMOVE_POST });
+
 // 게시글 상태
 export type BoardState = {
   posts: {
@@ -50,7 +53,8 @@ export type BoardAction =
   | ReturnType<typeof getPostsError>
   | ReturnType<typeof getPost>
   | ReturnType<typeof getPostSuccess>
-  | ReturnType<typeof getPostError>;
+  | ReturnType<typeof getPostError>
+  | ReturnType<typeof removePost>;
 
 const initialState: BoardState = {
   posts: {
@@ -122,6 +126,15 @@ function post(
           loading: false,
           data: null,
           error: action.payload,
+        },
+      };
+    case REMOVE_POST:
+      return {
+        ...state,
+        post: {
+          loading: false,
+          data: null,
+          error: null,
         },
       };
 

@@ -16,7 +16,7 @@ type WriteProps = RouteComponentProps & {
 
 function Write(props: WriteProps) {
   const { history, match, nickname } = props;
-  let { data } = useSelector((state: RootState) => state.post.post);
+  let { data } = useSelector((state: RootState) => state.posts.post);
 
   const [loading, setLoading] = useState(false);
 

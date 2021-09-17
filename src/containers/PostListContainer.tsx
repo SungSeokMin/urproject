@@ -9,7 +9,7 @@ import LoadingPage from '../pages/LoadingPage';
 import NotFound from '../pages/NotFound';
 
 function PostListContainer(props: RouteComponentProps) {
-  const posts = useSelector((state: RootState) => state.post.posts);
+  const posts = useSelector((state: RootState) => state.posts.posts);
   const { isLogin } = useSelector((state: RootState) => state.user);
   const { data, loading, error } = posts;
 

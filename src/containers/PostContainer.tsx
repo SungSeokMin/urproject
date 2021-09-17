@@ -15,7 +15,7 @@ function PostContainer(props: PostContainerProps) {
   const { postId } = props;
 
   const { data, loading, error } = useSelector(
-    (state: RootState) => state.post.post
+    (state: RootState) => state.posts.post
   );
   const loginUserInfo = useSelector((state: RootState) => state.user);
 

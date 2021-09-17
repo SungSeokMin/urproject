@@ -1,4 +1,4 @@
-import * as postActions from '../post';
+import * as postActions from '../posts';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
 import { getUserPosts, getUserPost } from '../../api/posts';

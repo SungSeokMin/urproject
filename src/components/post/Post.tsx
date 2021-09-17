@@ -3,6 +3,7 @@ import { PostType } from '../../api/posts';
 import styles from '../../css/Post.module.css';
 import { GiHeartPlus, GiHeartMinus } from 'react-icons/gi';
 import { UserState } from '../../modules/user';
+import { Link } from 'react-router-dom';
 
 type PostProps = {
   post: PostType;
@@ -10,7 +11,7 @@ type PostProps = {
 };
 
 function Post({ post, loginUserInfo }: PostProps) {
-  const { nickname, title, content, like } = post;
+  const { id, nickname, title, content, like } = post;
 
   const [bool, setBool] = useState(false);
 
@@ -53,7 +54,9 @@ function Post({ post, loginUserInfo }: PostProps) {
       <div className={styles.modifyAndDeleteAria}>
         {loginUserInfo.nickname === nickname && (
           <>
-            <button className={styles.modifyBtn}>수정</button>
+            <Link to={`modify/${id}`}>
+              <button className={styles.modifyBtn}>수정</button>
+            </Link>
             <button className={styles.deleteBtn}>삭제</button>
           </>
         )}

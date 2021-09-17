@@ -9,6 +9,8 @@ type PostListProps = {
   isLogin: boolean;
 };
 
+//! 현재 null값이 존재하기 때문에 오류가 난다.
+
 function PostList({ isLogin, posts }: PostListProps) {
   return (
     <>

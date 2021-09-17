@@ -6,9 +6,14 @@ import { checkEmail, checkNickname, userSignUp } from '../../api/users';
 type SignUpModalProps = {
   showLoginModal: () => void;
   notShow: () => void;
+  handleToast: (message: string) => void;
 };
 
-function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
+function SignUpModal({
+  showLoginModal,
+  notShow,
+  handleToast,
+}: SignUpModalProps) {
   const [inputs, setInputs] = useState({
     email: '',
     nickname: '',
@@ -58,10 +63,10 @@ function SignUpModal({ showLoginModal, notShow }: SignUpModalProps) {
         // 중복된 email, nickname 없음
         // 회원가입 요청
         userSignUp(email, nickname, password);
-        alert('회원가입이 완료되었습니다.');
+        handleToast('회원가입이 완료되었습니다.');
         showLoginModal();
       } else {
-        alert('중복된 닉네임 입니다.');
+        handleToast('중복된 닉네임 입니다.');
 
         if (nicknameRef.current !== null) nicknameRef.current.focus();
       }

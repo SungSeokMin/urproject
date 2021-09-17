@@ -16,7 +16,8 @@ function App() {
         <Switch>
           <Route path="/" component={Main} exact />
           <Route path="/post" component={PostListPage} exact />
-          <Route path="/post/:id" component={PostPage} />
+          <Route path="/post/:id" component={PostPage} exact />
+          <Route path="/post/modify/:id" component={WritePage} />
           <Route path="/write" component={WritePage} />
           <Route component={NotFound} />
         </Switch>

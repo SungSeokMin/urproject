@@ -4,22 +4,25 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { createPost } from '../api/posts';
+import { createPost, modifyPost } from '../api/posts';
 import { saveS3Image, saveS3Thumbnail } from '../api/write';
 import styles from '../css/Write.module.css';
 import { RootState } from '../modules';
 import WriteLoadingPage from '../pages/WriteLoadingPage';
 
-type WriteProps = RouteComponentProps;
+type WriteProps = RouteComponentProps & {
+  nickname: string;
+};
 
-function Write({ history }: WriteProps) {
-  const { nickname } = useSelector((state: RootState) => state.user);
+function Write(props: WriteProps) {
+  const { history, match, nickname } = props;
+  let { data } = useSelector((state: RootState) => state.post.post);
 
   const [loading, setLoading] = useState(false);
 
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [thumbnail, setThumbnail] = useState('');
+  const [title, setTitle] = useState(data ? data.title : '');
+  const [thumbnail, setThumbnail] = useState(data ? data.thumbnail : '');
+  const [content, setContent] = useState(data ? data.content : '');
 
   const QuillRef = useRef<ReactQuill>();
 
@@ -41,15 +44,13 @@ function Write({ history }: WriteProps) {
           setLoading(true);
           const imgUrl = await saveS3Image(formData);
 
-          let url = JSON.stringify(imgUrl);
-
           const range = QuillRef.current?.getEditor().getSelection()?.index;
           if (range !== null && range !== undefined) {
             let quill = QuillRef.current?.getEditor();
 
             quill?.setSelection(range, 1);
 
-            quill?.clipboard.dangerouslyPasteHTML(range, `<img src=${url}>`);
+            quill?.clipboard.dangerouslyPasteHTML(range, `<img src=${imgUrl}>`);
           }
 
           setLoading(false);
@@ -105,6 +106,7 @@ function Write({ history }: WriteProps) {
   // 썸네일 파일을 server로 보내고 S3에 저장 후 이미지URL 리턴받은 후 thubnail 상태 바꿔주기
   const selectThumbnail = async (e: ChangeEvent<HTMLInputElement>) => {
     setLoading(true);
+
     if (e.target.files !== null) {
       const file = e.target.files[0];
 
@@ -112,16 +114,15 @@ function Write({ history }: WriteProps) {
       formData.append('thumbnail', file);
 
       const imgUrl = await saveS3Thumbnail(formData);
-      const url = JSON.stringify(imgUrl);
 
-      setThumbnail(url);
+      setThumbnail(imgUrl);
       setLoading(false);
     }
   };
 
   // 추가 클릭 시 server로 요청
   // 완료 후 post 페이지로 이동
-  const insertPost = async () => {
+  const insertPostHandler = async () => {
     const post = {
       nickname,
       thumbnail,
@@ -134,11 +135,36 @@ function Write({ history }: WriteProps) {
     history.push('/post');
   };
 
+  const modifyPostHandler = async () => {
+    if (data) {
+      const post = {
+        id: data.id,
+        thumbnail,
+        title,
+        content,
+      };
+
+      await modifyPost(post);
+      history.push(`/post/${data.id}`);
+    }
+  };
+
+  const insertOrModifyHandler = () => {
+    const address = match.path;
+
+    if (address === '/post/modify/:id') {
+      modifyPostHandler();
+    } else {
+      insertPostHandler();
+    }
+  };
+
   return (
     <div className={styles.writeContainer}>
       <div className={styles.titleArea}>
         <textarea
           placeholder="프로젝트 이름을 작성해주세요."
+          value={title}
           onChange={titleChange}
         />
       </div>
@@ -169,7 +195,7 @@ function Write({ history }: WriteProps) {
         <button className={styles.thumbnailBtn} onClick={clickTunmbnail}>
           썸네일
         </button>
-        <button className={styles.insertBtn} onClick={insertPost}>
+        <button className={styles.insertBtn} onClick={insertOrModifyHandler}>
           추가
         </button>
       </div>

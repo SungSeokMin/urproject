@@ -3,6 +3,13 @@ import { BASE_URL } from '../util';
 
 const resourceURL = BASE_URL + '/board';
 
+export type ModifyPostType = {
+  id: number;
+  title: string;
+  content: string;
+  thumbnail: string;
+};
+
 export type CreatePostType = {
   nickname: string;
   title: string;
@@ -29,4 +36,8 @@ export async function getUserPost(id: number) {
 
 export async function createPost(post: CreatePostType) {
   await axios.post(resourceURL, post);
+}
+
+export async function modifyPost(post: ModifyPostType) {
+  await axios.patch(`${resourceURL}/${post.id}`, post);
 }

@@ -8,7 +8,7 @@ function WriteContainer(props: RouteComponentProps) {
   const { nickname } = useSelector((state: RootState) => state.user);
   let { data } = useSelector((state: RootState) => state.posts.post);
 
-  return <Write nickname={nickname} data={data} />;
+  return <Write nickname={nickname} data={data} {...props} />;
 }
 
 export default withRouter(WriteContainer);

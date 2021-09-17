@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import React, { ChangeEvent, useMemo, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import { createPost, modifyPost, PostType } from '../api/posts';
 import { saveS3Image, saveS3Thumbnail } from '../api/write';
 import styles from '../css/Write.module.css';
@@ -201,4 +201,4 @@ function Write(props: WriteProps) {
   );
 }
 
-export default withRouter(Write);
+export default Write;

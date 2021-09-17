@@ -6,7 +6,11 @@ function IntroPage() {
     <div
       className={styles.introPage}
       style={{ backgroundImage: 'url(/images/main-1.png)' }}
-    ></div>
+    >
+      <div className={styles.gifContainer}>
+        <img src="/gif/use-urproject.gif" alt="사용법" />
+      </div>
+    </div>
   );
 }
 

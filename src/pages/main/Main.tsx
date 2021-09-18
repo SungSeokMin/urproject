@@ -1,11 +1,19 @@
 import React from 'react';
 import styles from '../../css/Main.module.css';
+import Description from './Description';
 import IntroPage from './IntroPage';
+import SharePage from './SharePage';
 
-function Main() {
+type MainProps = {
+  showSignUpModal: () => void;
+};
+
+function Main({ showSignUpModal }: MainProps) {
   return (
     <div className={styles.mainContainer}>
-      <IntroPage />
+      <Description />
+      <SharePage />
+      <IntroPage showSignUpModal={showSignUpModal} />
     </div>
   );
 }

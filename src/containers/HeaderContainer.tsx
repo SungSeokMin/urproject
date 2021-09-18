@@ -11,9 +11,22 @@ import SignUpModal from '../pages/modal/SignUpModal';
 import styles from '../css/Header.module.css';
 import ToastMessage from '../components/taostMessage/ToastMessage';
 
-type HeaderContainerProps = RouteComponentProps;
+type HeaderContainerProps = RouteComponentProps & {
+  signIn: boolean;
+  signUp: boolean;
+  showLoginModal: () => void;
+  showSignUpModal: () => void;
+  notShow: () => void;
+};
 
-function HeaderContainer({ history }: HeaderContainerProps) {
+function HeaderContainer({
+  signIn,
+  signUp,
+  showLoginModal,
+  showSignUpModal,
+  notShow,
+  history,
+}: HeaderContainerProps) {
   const [toastStatus, setToastStatus] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
 
@@ -28,24 +41,6 @@ function HeaderContainer({ history }: HeaderContainerProps) {
 
   const { isLogin } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
-
-  const [signIn, setSignIn] = useState(false);
-  const [signUp, setSignUp] = useState(false);
-
-  const showLoginModal = () => {
-    setSignIn(true);
-    setSignUp(false);
-  };
-
-  const showSignUpModal = () => {
-    setSignIn(false);
-    setSignUp(true);
-  };
-
-  const notShow = () => {
-    setSignIn(false);
-    setSignUp(false);
-  };
 
   const requestLogin = (email: string, password: string) => {
     dispatch(userLoginAsync(email, password, handleToast));

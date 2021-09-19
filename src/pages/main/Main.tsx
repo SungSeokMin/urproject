@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../../css/Main.module.css';
 import Description from './Description';
+import Footer from './Footer';
 import IntroPage from './IntroPage';
 import SharePage from './SharePage';
 
@@ -14,6 +15,7 @@ function Main({ showSignUpModal }: MainProps) {
       <Description />
       <SharePage />
       <IntroPage showSignUpModal={showSignUpModal} />
+      <Footer />
     </div>
   );
 }

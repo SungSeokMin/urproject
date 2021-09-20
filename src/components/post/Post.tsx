@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { PostType } from '../../api/posts';
 import styles from '../../css/Post.module.css';
-import { GiHeartPlus, GiHeartMinus } from 'react-icons/gi';
+import { FiLink } from 'react-icons/fi';
 import { UserState } from '../../modules/user';
 import { Link } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 type PostProps = RouteComponentProps & {
   post: PostType;
@@ -13,17 +14,10 @@ type PostProps = RouteComponentProps & {
 };
 
 function Post({ post, loginUserInfo, requestRemovePost, history }: PostProps) {
-  const { id, nickname, title, content, like } = post;
+  const [showMessage, setShowMessage] = useState(false);
 
-  const [bool, setBool] = useState(false);
-
-  const clickLikeIcon = () => {
-    setBool(true);
-  };
-
-  const clickUnLikeIcon = () => {
-    setBool(false);
-  };
+  const { id, nickname, title, content } = post;
+  const CurrentURL = window.location.href;
 
   const removePostHandler = () => {
     requestRemovePost(id);
@@ -31,32 +25,26 @@ function Post({ post, loginUserInfo, requestRemovePost, history }: PostProps) {
     history.push('/post');
   };
 
+  const copyLinkHandler = () => {
+    setShowMessage(true);
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 1000);
+  };
+
   return (
     <div className={styles.postContainer}>
+      {showMessage && <div className={styles.copyMessage}>복사 완료 !</div>}
       <div className={styles.titleAria}>
+        <CopyToClipboard text={CurrentURL}>
+          <FiLink className={styles.linkIcon} onClick={copyLinkHandler} />
+        </CopyToClipboard>
         <span>{title}</span>
       </div>
       <div className={styles.nicknameAndLike}>
         <div className={styles.nicknameAria}>
           <span>{nickname}</span>
         </div>
-        {loginUserInfo.isLogin && (
-          <div className={styles.likeAria}>
-            {bool ? (
-              <GiHeartMinus
-                className={styles.unLikeIcon}
-                onClick={clickUnLikeIcon}
-              />
-            ) : (
-              <GiHeartPlus
-                className={styles.likeIcon}
-                onClick={clickLikeIcon}
-              />
-            )}
-
-            <span className={styles.likeNumber}>{like}</span>
-          </div>
-        )}
       </div>
       <div className={styles.underLine} />
       <div className={styles.modifyAndDeleteAria}>

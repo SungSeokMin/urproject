@@ -19,7 +19,7 @@ function Footer() {
       <div className={styles.contactContainer}>
         <h3>Contact</h3>
         <a
-          href="https://github.com/SungSeokMin/urproject"
+          href="https://github.com/Seongseokwon"
           target="_blank"
           rel="noreferrer"
         >
@@ -27,7 +27,7 @@ function Footer() {
           Sung Seokwon
         </a>
         <a
-          href="https://github.com/SungSeokMin/urproject"
+          href="https://github.com/SungSeokMin"
           target="_blank"
           rel="noreferrer"
         >

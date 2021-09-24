@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://server.ur-project.net';
+export const BASE_URL = 'https://server.ur-project.net';

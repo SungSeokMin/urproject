@@ -55,3 +55,57 @@
   font-size: 20px;
   margin-left: 20px;
 }
+
+@media screen and (max-width: 1024px) {
+  .logoContainer {
+    width: 170px;
+    padding: 0;
+  }
+  .menuContainer {
+    position: unset;
+  }
+
+  .projectLink {
+    color: #6c63ff;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .logoContainer {
+    width: 100px;
+  }
+  .menuContainer {
+    position: unset;
+  }
+
+  .userConatiner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .signUpBtn {
+    margin: 0;
+  }
+
+  .projectLink,
+  .signOutBtn,
+  .loginBtn,
+  .signUpBtn {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .logoContainer {
+    width: 80px;
+  }
+
+  .projectLink,
+  .signOutBtn,
+  .loginBtn,
+  .signUpBtn {
+    font-size: 12px;
+  }
+}

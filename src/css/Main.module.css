@@ -148,3 +148,10 @@
   flex-direction: column;
   margin-left: 100px;
 }
+
+@media screen and (max-width: 1600px) {
+  .mainContainer {
+    width: 100%;
+    border: 1px solid blue;
+  }
+}

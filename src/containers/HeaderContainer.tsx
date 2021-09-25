@@ -68,7 +68,7 @@ function HeaderContainer({
           </Link>
         </div>
 
-        <div className="user-conatiner">
+        <div className={styles.userConatiner}>
           {isLogin ? (
             <button className={styles.signOutBtn} onClick={handleLogout}>
               로그아웃

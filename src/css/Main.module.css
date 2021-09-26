@@ -149,9 +149,88 @@
   margin-left: 100px;
 }
 
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1300px) {
   .mainContainer {
     width: 100%;
-    border: 1px solid blue;
+  }
+  .introPage {
+    width: 1200px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .descriptionPage {
+    flex-direction: column;
+  }
+  .descriptionPage > .titleArea {
+    width: 100%;
+  }
+  .descriptionPage > .descriptionImage {
+    width: 100%;
+    margin-top: 50px;
+  }
+  .sharePage {
+    flex-direction: column-reverse;
+    height: 100%;
+    margin-top: 250px;
+  }
+
+  .sharePage > .shareImage {
+    width: 100%;
+  }
+  .sharePage > .titleArea {
+    width: 100%;
+    text-align: start;
+  }
+
+  .introPage {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .descriptionPage {
+    flex-direction: column;
+  }
+  .descriptionPage > .titleArea {
+    width: 100%;
+  }
+  .descriptionPage > .descriptionImage {
+    width: 100%;
+    margin-top: 50px;
+  }
+  .sharePage {
+    flex-direction: column-reverse;
+    margin-top: 100px;
+  }
+
+  .sharePage > .shareImage {
+    width: 100%;
+  }
+  .sharePage > .titleArea {
+    width: 100%;
+    text-align: start;
+  }
+  .introPage {
+    display: block;
+    width: 100%;
+    height: 280px;
+  }
+
+  .introPage > .gifContainer {
+    width: 150px;
+    height: 100px;
+    top: 35px;
+    left: 104px;
+  }
+
+  .introPage > .startService {
+    left: calc(50% - 80px);
+    bottom: 50px;
+  }
+
+  .introPage > .startService > button {
+    padding: 10px 50px;
+    font-size: 15px;
   }
 }

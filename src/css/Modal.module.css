@@ -124,3 +124,20 @@
   color: #e05d5d;
   margin-left: 3px;
 }
+
+@media screen and (max-width: 414px) {
+  .modalContainer > .loginBox {
+    border: 1px solid black;
+    width: 100%;
+  }
+  .modalContainer > .loginBox > .imgContainer {
+    margin-left: 0;
+    display: none;
+  }
+
+  .modalContainer > .loginBox > .inputContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
